@@ -33,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,11 +52,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Galeries\Customer.cs" />
-    <Compile Include="Model\Galeries\Galeries.cs" />
-    <Compile Include="Model\Galeries\Galery.cs" />
-    <Compile Include="Model\Galeries\Photo.cs" />
-    <Compile Include="Model\Galeries\PhotoType.cs" />
+    <Compile Include="Model\Directories\IPhotosPaths.cs" />
+    <Compile Include="Model\Directories\PhotoPathFinder.cs" />
+    <Compile Include="Model\Directories\PhotosPaths.cs" />
+    <Compile Include="Model\Galleries\Customer.cs" />
+    <Compile Include="Model\Galleries\Galleries.cs" />
+    <Compile Include="Model\Galleries\Gallery.cs" />
+    <Compile Include="Model\Galleries\Photo.cs" />
+    <Compile Include="Model\Galleries\PhotoType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -75,7 +74,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -89,6 +87,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,21 +3,21 @@ using System.Xml;
 
 namespace SkolniFotograf.Model.Galeries
 {
-    internal class Galeries
+    public class GaleriesCollection
     {
-        public IList<Galery> AllGaleries
+        public IList<Galery> Galleries
         {
             get; set;
         }
 
-        public Galeries()
+        public GaleriesCollection()
         {
-            AllGaleries = new List<Galery>();
+            Galleries = new List<Galery>();
         }
 
-        public void Load(XmlDocument xmlDef)
+        internal void Load(XmlDocument xmlDef)
         {
-            AllGaleries.Clear();
+            Galleries.Clear();
 
             XmlNodeList galeriesNodes = xmlDef.SelectNodes("/galeries/galery");
             foreach (XmlNode galeryNode in galeriesNodes)
@@ -25,7 +25,7 @@ namespace SkolniFotograf.Model.Galeries
                 Galery galery = new Galery();
                 galery.Load(galeryNode);
 
-                AllGaleries.Add(galery);
+                Galleries.Add(galery);
             }
         }
     }

@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace SkolniFotograf.Model.Galeries
 {
-    internal class Galery
+    public class Galery
     {
         public string Name
         {
@@ -21,10 +21,26 @@ namespace SkolniFotograf.Model.Galeries
             get; set;
         }
 
+        public Galery()
+        {
+            Customers = new List<Customer>();
+        }
+
         internal void Load(XmlNode galeryNode)
         {
+            Customers.Clear();
+
             Name = galeryNode.Attributes.GetNamedItem("name").Value;
             Price = Double.Parse(galeryNode.Attributes.GetNamedItem("price").Value);
+
+            XmlNodeList custommersNodes = galeryNode.SelectNodes("orders/customer");
+            foreach (XmlNode customerNode in custommersNodes)
+            {
+                Customer customer = new Customer();
+                customer.Load(customerNode);
+
+                Customers.Add(customer);
+            }
         }
     }
 }
