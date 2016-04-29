@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace SkolniFotograf.Model.Galeries
+namespace SkolniFotograf.Model.Galleries
 {
     public class Photo
     {

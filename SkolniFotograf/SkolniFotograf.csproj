@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\NameHelpers.cs" />
+    <Compile Include="Core\PhotoCopyException.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +62,8 @@
     <Compile Include="Model\Galleries\Gallery.cs" />
     <Compile Include="Model\Galleries\Photo.cs" />
     <Compile Include="Model\Galleries\PhotoType.cs" />
+    <Compile Include="Model\PhotoCopyInfo.cs" />
+    <Compile Include="Model\TargetPhotoGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

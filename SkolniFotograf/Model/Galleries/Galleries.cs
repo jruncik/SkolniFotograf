@@ -1,31 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
 
-namespace SkolniFotograf.Model.Galeries
+namespace SkolniFotograf.Model.Galleries
 {
     public class GaleriesCollection
     {
-        public IList<Galery> Galleries
+        public IList<Gallery> Galleries
         {
             get; set;
         }
 
         public GaleriesCollection()
         {
-            Galleries = new List<Galery>();
+            Galleries = new List<Gallery>();
         }
 
         internal void Load(XmlDocument xmlDef)
         {
             Galleries.Clear();
 
-            XmlNodeList galeriesNodes = xmlDef.SelectNodes("/galeries/galery");
-            foreach (XmlNode galeryNode in galeriesNodes)
+            XmlNodeList galleriesNodes = xmlDef.SelectNodes("/galeries/galery");
+            foreach (XmlNode galleryNode in galleriesNodes)
             {
-                Galery galery = new Galery();
-                galery.Load(galeryNode);
+                Gallery gallery = new Gallery();
+                gallery.Load(galleryNode);
 
-                Galleries.Add(galery);
+                Galleries.Add(gallery);
             }
         }
     }

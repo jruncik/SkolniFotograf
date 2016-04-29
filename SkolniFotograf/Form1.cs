@@ -1,8 +1,9 @@
-﻿using SkolniFotograf.Model.Directories;
-using SkolniFotograf.Model.Galeries;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Xml;
+
+using SkolniFotograf.Model.Directories;
+using SkolniFotograf.Model.Galleries;
 
 namespace SkolniFotograf
 {

@@ -1,4 +1,6 @@
-﻿  using System.Collections.Generic;
+﻿using SkolniFotograf.Core;
+using System.Collections.Generic;
+using System;
 
 namespace SkolniFotograf.Model.Directories
 {
@@ -11,7 +13,7 @@ namespace SkolniFotograf.Model.Directories
 
         public void AddPhoto(string photoName, string photoFullPath)
         {
-            string photoKeyName = CreatePhotoKeyName(photoName);
+            string photoKeyName = NameHelpers.CreateKeyName(photoName);
 
             if (_photosFullPaths.ContainsKey(photoKeyName))
             {
@@ -22,13 +24,16 @@ namespace SkolniFotograf.Model.Directories
             _photosFullPaths.Add(photoKeyName, photoFullPath);
         }
 
-        public static string CreatePhotoKeyName(string photoName)
+        public string GetPhotoFullPath(string photoName)
         {
-            string photoKeyName = photoName.Trim();
-            photoKeyName = photoKeyName.Replace('.', '_');
-            photoKeyName = photoKeyName.Replace('-', '_');
+            string photoKeyName = NameHelpers.CreateKeyName(photoName);
 
-            return photoKeyName;
+            if (_photosFullPaths.ContainsKey(photoKeyName))
+            {
+                return _photosFullPaths[photoKeyName];
+            }
+
+            throw new PhotoCopyException(String.Format("Source file for '{0}' doesn't exist!", photoName));
         }
 
         private IDictionary<string, string> _photosFullPaths;

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace SkolniFotograf.Model.Galeries
+namespace SkolniFotograf.Model.Galleries
 {
-    public class Galery
+    public class Gallery
     {
         public string Name
         {
@@ -21,19 +21,19 @@ namespace SkolniFotograf.Model.Galeries
             get; set;
         }
 
-        public Galery()
+        public Gallery()
         {
             Customers = new List<Customer>();
         }
 
-        internal void Load(XmlNode galeryNode)
+        internal void Load(XmlNode galleryNode)
         {
             Customers.Clear();
 
-            Name = galeryNode.Attributes.GetNamedItem("name").Value;
-            Price = Double.Parse(galeryNode.Attributes.GetNamedItem("price").Value);
+            Name = galleryNode.Attributes.GetNamedItem("name").Value;
+            Price = Double.Parse(galleryNode.Attributes.GetNamedItem("price").Value);
 
-            XmlNodeList custommersNodes = galeryNode.SelectNodes("orders/customer");
+            XmlNodeList custommersNodes = galleryNode.SelectNodes("orders/customer");
             foreach (XmlNode customerNode in custommersNodes)
             {
                 Customer customer = new Customer();
