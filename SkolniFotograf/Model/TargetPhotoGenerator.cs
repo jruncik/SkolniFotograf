@@ -8,11 +8,16 @@ using SkolniFotograf.Model.Galleries;
 
 namespace SkolniFotograf.Model
 {
-    internal class TargetPhotoGenerator
+    public class TargetPhotoGenerator
     {
-        public IList<PhotoCopyInfo> PhotoCopyInfo
+        public IList<PhotoCopyInfo> PhotoCopyInfos
         {
-            set { _photoCopyInfo = value; }
+            get { return _photoCopyInfo; }
+        }
+
+        public ICollection<string> TargetDirectories
+        {
+            get { return _photoTypeDirectory.Values; }
         }
 
         public TargetPhotoGenerator(Gallery gallery, string targetDirectory, IPhotosPaths photoPaths)
@@ -53,6 +58,7 @@ namespace SkolniFotograf.Model
                     for (int i = 0; i < photo.Quantity;  ++i)
                     {
                         string textIndex = _index.ToString("0000");
+                        ++_index;
 
                         photoName.Clear();
                         photoName.Append(targetPhotoDirectory);
