@@ -22,9 +22,12 @@ namespace SkolniFotograf.Model
 
         public TargetPhotoGenerator(Gallery gallery, string targetDirectory, IPhotosPaths photoPaths)
         {
-            _targetDirectory = targetDirectory;
-            _photoPaths = photoPaths;
             _gallery = gallery;
+
+            _targetDirectory = targetDirectory;
+            _targetDirectory += '\\' + NameHelpers.CreateKeyName(_gallery.Name);
+
+            _photoPaths = photoPaths;
 
             _photoTypeDirectory = new Dictionary<string, string>(4);
             _photoCopyInfo = new List<PhotoCopyInfo>(128);
