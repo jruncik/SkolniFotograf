@@ -7,5 +7,7 @@
         void AddMessage(string message);
 
         void AddNewLine();
+
+        void ClearMessages();
     }
 }

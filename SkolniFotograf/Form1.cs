@@ -108,6 +108,8 @@ namespace SkolniFotograf
 
         private void buttonProcessClick(object sender, EventArgs e)
         {
+            ClearMessages();
+
             Gallery currGallery = ((ComboGaleryItem)comboBoxGaleries.SelectedItem).Gallery;
             AddMessage(String.Format("Star Processing gallery '{0}'", currGallery.Name));
             AddNewLine();
@@ -162,6 +164,11 @@ namespace SkolniFotograf
         public void AddNewLine()
         {
             listBoxOutput.Items.Add(string.Empty);
+        }
+
+        public void ClearMessages()
+        {
+            listBoxOutput.Items.Clear();
         }
 
         private void Form1_Load(object sender, EventArgs e)
