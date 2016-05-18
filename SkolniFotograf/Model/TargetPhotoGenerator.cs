@@ -5,6 +5,7 @@ using System.Text;
 using SkolniFotograf.Core;
 using SkolniFotograf.Model.Directories;
 using SkolniFotograf.Model.Galleries;
+using System;
 
 namespace SkolniFotograf.Model
 {
@@ -20,7 +21,7 @@ namespace SkolniFotograf.Model
             get { return _photoTypeDirectory.Values; }
         }
 
-        public TargetPhotoGenerator(Gallery gallery, string targetDirectory, IPhotosPaths photoPaths)
+        public TargetPhotoGenerator(Gallery gallery, string targetDirectory, IPhotosPaths photoPaths, IMessaging messaging)
         {
             _gallery = gallery;
 
@@ -28,6 +29,7 @@ namespace SkolniFotograf.Model
             _targetDirectory += '\\' + NameHelpers.CreateKeyName(_gallery.Name);
 
             _photoPaths = photoPaths;
+            _messaging = messaging;
 
             _photoTypeDirectory = new Dictionary<string, string>(4);
             _photoCopyInfo = new List<PhotoCopyInfo>(128);
@@ -75,11 +77,18 @@ namespace SkolniFotograf.Model
                         photoName.Append('_');
                         photoName.Append(GeneratePhotoName(photo));
 
-                        PhotoCopyInfo photocopyInfo = new PhotoCopyInfo();
-                        photocopyInfo.DestFullFileName = photoName.ToString();
-                        photocopyInfo.SrcFullFileName = _photoPaths.GetPhotoFullPath(photo.Name);
+                        try
+                        {
+                            PhotoCopyInfo photocopyInfo = new PhotoCopyInfo();
+                            photocopyInfo.DestFullFileName = photoName.ToString();
+                            photocopyInfo.SrcFullFileName = _photoPaths.GetPhotoFullPath(photo.Name);
 
-                        _photoCopyInfo.Add(photocopyInfo);
+                            _photoCopyInfo.Add(photocopyInfo);
+                        }
+                        catch (Exception ex)
+                        {
+                            _messaging.AddError(ex.Message);
+                        }
                     }
                 }
             }
@@ -107,6 +116,7 @@ namespace SkolniFotograf.Model
         private string _targetDirectory;
         private readonly Gallery _gallery;
         private readonly IPhotosPaths _photoPaths;
+        private readonly IMessaging _messaging;
 
         private IDictionary<string, string> _photoTypeDirectory;
 

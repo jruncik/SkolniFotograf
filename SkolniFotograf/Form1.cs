@@ -114,14 +114,14 @@ namespace SkolniFotograf
             AddMessage(String.Format("Star Processing gallery '{0}'", currGallery.Name));
             AddNewLine();
 
-            TargetPhotoGenerator tpg = new TargetPhotoGenerator(currGallery, _settings.PhotoDestinationDirectory, _photosPaths);
+            TargetPhotoGenerator tpg = new TargetPhotoGenerator(currGallery, _settings.PhotoDestinationDirectory, _photosPaths, this);
 
             tpg.GenerateTargetPhotos();
             EnsureTardetDirectoris(tpg.TargetDirectories);
 
             foreach (PhotoCopyInfo photoCopyInfo in tpg.PhotoCopyInfos)
             {
-                AddMessage(String.Format("copying photo from '{0}' to '{1}'", photoCopyInfo.SrcFullFileName, photoCopyInfo.DestFullFileName));
+                // AddMessage(String.Format("copying photo from '{0}' to '{1}'", photoCopyInfo.SrcFullFileName, photoCopyInfo.DestFullFileName));
 
                 try
                 {
